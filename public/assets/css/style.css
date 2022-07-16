@@ -1,0 +1,166 @@
+.menu .item a{
+ color: #000;
+ font-size: 14px;
+ text-decoration: none;
+ display: block;
+
+
+}
+
+.menu .item a:hover{
+
+ transition: 0.3s ease;
+}
+.menu .item{
+
+    
+    position: relative;
+    cursor: pointer;
+}
+
+.menu .item a .dropdown{
+ position: absolute;
+ right: 0;
+ margin: 5px;
+
+}
+.menu .item .sub-menu{
+    display: block;
+    margin-top: 20px;
+}
+
+
+.menu .item .sub-menu a{
+           padding-left: 40px;
+           padding-top: 0px;
+           font-weight: 500;
+           color: #008000;
+
+}
+.sub-category i{
+  
+    
+}
+.rotate:target{
+    transform: rotate(45deg);
+}
+
+
+
+.card-columns{
+    width: 500px !important;
+}
+.sub-cat-menu.c-scrollbar-light.rounded.shadow-lg.p-4.loaded {
+width: 777px;
+margin-left: 136px;
+}
+
+
+.sidebar li .submenu{ 
+	list-style: none; 
+	margin: 0; 
+	padding: 20; 
+	padding-left: 1rem; 
+	padding-right: 1rem;
+}
+.sidebar ul li a{
+    padding: 10px;
+    color: #000;
+    font-size: 16px;
+}
+.nav-link i{
+   float: right;
+}
+
+
+.media {
+    vertical-align: middle;
+    width: 700px;
+    padding: 12px;
+    margin-top: 20px;
+    border: 1px solid #dbdbdb;
+}
+
+.media-body a h4{
+    font-size: 17px;
+    font-weight: 700;
+}
+.media-body p{
+    font-weight: 700;
+    font-size: 16px;
+}
+marquee {
+    padding: 20px;
+    border: 1px solid #dbdbdb;
+}
+
+form.stop-propagation {
+    width: 78%;
+}
+
+
+.left-side { background:#ddd; width: 180px; display:inline-block; float:left; position:sticky; }
+
+
+
+
+@keyframes animate{
+	
+	0%{
+		opacity: 0;
+		transform: rotate(45deg) translate(-20px, -20px);
+	}
+	50%{
+		opacity: 1;
+	}
+	100%{
+		opacity: 0;
+		transform: rotate(45deg) translate(20px, 20px);
+	}
+}
+
+li.jiu {
+    width: 100px!important;
+}
+
+ul.list-inline.page-bar.mb-0.h-100.d-flex.justify-content-end.align-items-center {
+    margin-left: -7px;
+}
+
+.border-bottom{
+    border:none!important;
+    
+}
+tr.footable-empty {
+    display: none;
+}
+
+@media screen and (max-width: 480px) {
+   .media a img{
+      width: 100px!important; 
+   }
+   .media-body a h4{
+       font-size:12px!important;
+     
+   }
+   .media-body p{
+       font-size: 12px!important;
+       margin-bottom:2px;
+       
+   }
+   .media-body strong{
+    font-size: 10px!important;
+    margin-top: -15px!important;
+   }
+   .media .post-time{
+       margin-top: 5px;
+       font-size:10px;
+       margin-right: 5px!important;
+   }
+   .media{
+       padding: 0px !important;
+   }
+  }
+.aiz-carousel .slick-arrow{
+    background: none!important;
+  }
