@@ -117,9 +117,11 @@
                                             @if ($getCities)
 
                                             @foreach ($getCities as $city)
-
+                                            @php
+                                            $cityProductCount =CustomerProduct::where('city_id',$city->id)->count();
+                                          @endphp
                                          <li class="mb-2">
-                                              <a href="{{ route('customer_products.city', $city->id) }}" class="text-dark">{{ $city->name }}</a>
+                                              <a href="{{ route('customer_products.city', $city->id) }}" class="text-dark">{{ $city->name }}({{ $cityProductCount }})</a>
                                          </li>
                                             @endforeach
                                             @else
