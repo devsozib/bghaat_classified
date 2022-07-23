@@ -56,7 +56,7 @@ ul li {
 
               <div class="bg-white col-xl-6 col-lg-6 col-md-12 mb-4" >
 
-                        <h2 class="mb-2 fs-25 fw-700">
+                        <h2 class="mb-2 fs-20 fw-700">
                             {{ $customer_product->getTranslation('name') }}
                         </h2>
                         <span style="color: #707676; font-weight:400">Posted on:{{ $customer_product->getTranslation('created_at') }},  {{ $customer_product->location }}</span>

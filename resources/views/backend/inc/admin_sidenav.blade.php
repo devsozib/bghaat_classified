@@ -355,15 +355,15 @@
                                         <span class="aiz-side-nav-text">{{translate('Customer Ad Lists')}}</span>
                                     </a>
                                 </li>
-                                {{-- <li class="aiz-side-nav-item">
+                                <li class="aiz-side-nav-item">
                                     <a href="{{ route('customer_packages.index') }}" class="aiz-side-nav-link {{ areActiveRoutes(['customer_packages.index', 'customer_packages.create', 'customer_packages.edit'])}}">
                                         <span class="aiz-side-nav-text">{{ translate('Classified Packages') }}</span>
                                     </a>
-                                </li> --}}
+                                </li>
                             @endif
                         </ul>
                     </li>
-                @endif 
+                @endif
 
             <!-- Sellers -->
                 {{-- @if((Auth::user()->user_type == 'admin' || in_array('9', json_decode(Auth::user()->staff->role->permissions))) && get_setting('vendor_system_activation') == 1)
@@ -416,7 +416,7 @@
                             </li>
                         </ul> --}}
                     </li>
-                {{-- @endif --}} 
+                {{-- @endif --}}
                 @if(Auth::user()->user_type == 'admin' || in_array('22', json_decode(Auth::user()->staff->role->permissions)))
                     <li class="aiz-side-nav-item">
                         <a href="{{ route('uploaded-files.index') }}" class="aiz-side-nav-link {{ areActiveRoutes(['uploaded-files.create'])}}">
@@ -632,7 +632,7 @@
                 @endif --}}
 
             <!-- Offline Payment Addon-->
-                {{-- @if (addon_is_activated('offline_payment'))
+                @if (addon_is_activated('offline_payment'))
                     @if(Auth::user()->user_type == 'admin' || in_array('16', json_decode(Auth::user()->staff->role->permissions)))
                         <li class="aiz-side-nav-item">
                             <a href="#" class="aiz-side-nav-link">
@@ -674,7 +674,7 @@
                             </ul>
                         </li>
                     @endif
-                @endif --}}
+                @endif
 
             <!-- Paytm Addon -->
                 {{-- @if (addon_is_activated('paytm'))
@@ -764,7 +764,7 @@
                         </li>
                     @endif
                 @endif --}}
-{{-- 
+{{--
                 {{-- @if(addon_is_activated('african_pg'))
                     @if(Auth::user()->user_type == 'admin' || in_array('19', json_decode(Auth::user()->staff->role->permissions)))
                         <li class="aiz-side-nav-item">
@@ -790,7 +790,7 @@
                             </ul>
                         </li>
                     @endif
-                @endif --}} 
+                @endif --}}
 
             <!-- Website Setup -->
         @if(Auth::user()->user_type == 'admin' || in_array('13', json_decode(Auth::user()->staff->role->permissions)))
@@ -821,9 +821,9 @@
                                     <span class="aiz-side-nav-text">{{translate('Appearance')}}</span>
                                 </a>
                             </li>
-                        </ul> 
+                        </ul>
                     </li>
-               @endif 
+               @endif
 
             <!-- Setup & Configurations -->
             @if(Auth::user()->user_type == 'admin' || in_array('14', json_decode(Auth::user()->staff->role->permissions)))
@@ -967,9 +967,9 @@
                                 </ul>
                             </li>
 
-                        </ul> 
+                        </ul>
                     </li>
-                @endif 
+                @endif
 
 
             <!-- Staffs -->

@@ -87,7 +87,7 @@ class CustomerProductController extends Controller
         if( $request->has('negotiable') ){
             $negotiable = $request->negotiable;
         }else{
-            $negotiable  = " ";
+            $negotiable  = "";
         }
     
         $category= Category::where('id',$id)->first();
@@ -95,14 +95,14 @@ class CustomerProductController extends Controller
         
          $features = $request->features;
          if(!$features){
-             $featuresData = $request->features;
+             $featuresData = null;
          }else{
             $featuresData =implode(",",$features);
          }
 
          $fuel_type = $request->fuel_type;
          if(!$fuel_type){
-             $fuel_typeData = $request->fuel_type;
+             $fuel_typeData = null;
          }else{
             $fuel_typeData =implode(" ",$fuel_type);
          }
@@ -217,7 +217,7 @@ class CustomerProductController extends Controller
         if( $request->has('negotiable') ){
             $negotiable = $request->negotiable;
         }else{
-            $negotiable  = " ";
+            $negotiable  = "";
         }
     
         $category= Category::where('id',$id)->first();
@@ -225,13 +225,13 @@ class CustomerProductController extends Controller
         
          $features = $request->features;
          if(!$features){
-             $featuresData =$request->features;
+             $featuresData =null;
          }else{
             $featuresData =implode(",",$features);
          }
          $fuel_type = $request->fuel_type;
          if(!$fuel_type){
-             $fuel_typeData = $request->fuel_type;
+             $fuel_typeData = null;
          }else{
             $fuel_typeData =implode(" ",$fuel_type);
          }
@@ -454,6 +454,25 @@ class CustomerProductController extends Controller
         $ID = decrypt($id);
         $subcategory = Category::orderBy('name','ASC')->where('parent_id', $ID)->where('level',1)->where('featured',1)->get();
         return view('frontend.user.customer.customer_ads.selectSubCategory',compact('subcategory'));
+    }
+
+    public function ajaxSearch(Request $request){
+        // $adsName = CustomerProduct::where('status',1)->get();
+
+        // $data = [];
+
+        // foreach($adsName as $item){
+        //     $data[]= $item['name'];
+        // }
+
+      
+      $adsList= CustomerProduct::where('name','like','%'.$request->searchData.'%')
+                                 ->orWhere('description','like','%'.$request->searchData.'%')
+                                 ->take(5);
+       
+      
+        return view('frontend.user.search-ads', compact('adsList'));
+         
     }
 
   

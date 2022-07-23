@@ -72,7 +72,7 @@ use App\Models\Category;
                <span><i class="las la-map-marker"></i></span>
                 All Of Bangladesh<i class="fas fa-angle-down dropdown "></i>
             </a>
-           <div class="sub-menu" style="margin-left: -70px">
+           <div class="sub-menu" style="margin-left: -20px">
             <ul>
 
                    @if (!isset($category_id))

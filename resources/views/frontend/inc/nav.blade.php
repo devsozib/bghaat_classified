@@ -1,11 +1,15 @@
+
+<link rel='stylesheet' id='pacz-styles-css'  href='{{ static_asset('assets/css/pacz-styles.css') }}' type='text/css' media='all' />
+
+<link rel='stylesheet' id='theme-options-css'  href='{{ static_asset('assets/css/classiadspro-dynamic.css') }}' type='text/css' media='all' />
 <style>
-    input#search {
-    border-radius: 3px;
-    height: 38px;
+    .input-group.serach-form.mt-2 {
+    width: 400px;
 }
 </style>
 <!-- END Top Bar -->
-<header class="@if(get_setting('header_stikcy') == 'on') sticky-top @endif z-1020 border-bottom shadow-sm" style="background-color:#272727!important">
+
+{{-- <header class="@if(get_setting('header_stikcy') == 'on') sticky-top @endif z-1020 border-bottom shadow-sm" style="background-color:#272727!important">
     <div class="position-relative logo-bar-area z-1">
         <div class="container">
             <div class="d-flex align-items-center">
@@ -129,6 +133,79 @@
             </div>
         </div>
     @endif
+</header> --}}
+	<header id="pacz-header" class="block-header boxed-header header-style-v11 header-align-left header-structure-standard header-hover-style- put-header-top 0 header_grid_margin  theme-main-header pacz-header-module" data-header-style="block" data-header-structure="standard" data-transparent-skin="dark" data-height="103" data-sticky-height="103"><div class="pacz-header-mainnavbar"><div class="pacz-grid clearfix"><nav id="pacz-main-navigation" class="clearfix">
+        <ul id="menu-main" class="main-navigation-ul clearfix">
+        <li class="list-inline-item mt-2">
+            <div class="d-lg-none mr-0" style="margin-top: 45px;">
+                <a class="p-2 d-block text-reset " style="margin-top:-10px;" href="javascript:void(0);" data-toggle="class-toggle" data-target=".front-header-search">
+                    <i class="las la-search la-flip-horizontal "></i>
+                </a>
+            </div>
+
+            <div class=" front-header-search d-flex align-items-center">
+                <div class="position-relative  ">
+                    <form action="{{ route('search') }}" method="GET" class="stop-propagation mt-3">
+
+                        <div class="d-flex position-relative align-items-center">
+                            <div class="d-lg-none" data-toggle="class-toggle" data-target=".front-header-search">
+                                <button class="btn px-2" type="button"><i class="la la-2x la-long-arrow-left"></i></button>
+                            </div>
+                            <div class="input-group serach-form mt-2" >
+                                <input type="text" class=" form-control" id="search" name="query"  placeholder="{{translate('What are you looking for?')}}" value="{{ isset($old_query)? $old_query: "" }}">
+                                <div class=" ">
+                                    <button class="btn" style="margin-left:-50px; margin-top:5px" type="submit">
+                                        <i class="la la-search la-flip-horizontal fs-18"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div id="suggest-ads">
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="d-none d-lg-none  mr-0 ">
+                <div class="nav-search-box">
+                    <a href="#" class="nav-box-link">
+                        <i class="la la-search la-flip-horizontal d-inline-block nav-box-icon"></i>
+                    </a>
+                </div>
+            </div>
+
+
+		</li>
+        <li class="pacz-header-logo"><a href="{{ route('home') }}" title="Best Classified WordPress Theme"><img alt="Best Classified WordPress Theme" class="pacz-dark-logo" src="{{ static_asset('assets/img/logo.jpg') }}" data-retina-src="{{ static_asset('assets/img/logo.jpg') }}" /><img alt="Best Classified Website" class="pacz-transparent-logo" src="{{ static_asset('assets/img/logo.jpg') }}" data-retina-src="{{ static_asset('assets/img/logo.jpg') }}" /></a></li>
+
+        @auth
+        @if(isAdmin())
+        <li class="logreg-header right"><i class="pacz-flaticon-user73"></i><span class="pacz-login-2-div">&#047;</span><a class="pacz-register-2" href="{{ route('admin.dashboard') }}">My Panel</a></li>
+        @else
+            <li class="desktop listing-btn "><a class="submit-listing-button-single btn btn-primary" href="{{ route('selectCategory') }}" rel="nofollow"><span>Post Your Ad</span></a><a class="submit-listing-button-single" href="{{ route('selectCategory') }}" rel="nofollow"><i class="fas fa-plus d-lg-none"></i></a>
+
+                <a class="pacz-register-2" href="{{ route('dashboard') }}">Account</a>
+            </li>
+
+        @endif
+        <li class="list-inline-item right">
+            <a class="pacz-login-2 clearfix" href="{{ route('logout') }}">Logout</a>
+        </li>
+        @else
+
+
+        <li class="logreg-header right"><i class="las la-user"></i><a class="pacz-login-2 clearfix" href="{{ route('user.login') }}">login</a><span class="pacz-login-2-div">&#047;</span><a class="pacz-register-2" href="{{ route('user.registration') }}">Register</a></li>
+        <li class="desktop listing-btn right"><a class="submit-listing-button-single btn btn-primary" href="{{ route('selectCategory') }}" rel="nofollow"><span>Post Your Ad</span></a><a class="submit-listing-button-single" href="{{ route('selectCategory') }}" rel="nofollow"><i class="fas fa-plus"></i></a></li>
+        @endauth
+
+
+</ul>
+</nav>
+</div>
+</div>
 </header>
 <style>
     .mobile-hor-swipe{

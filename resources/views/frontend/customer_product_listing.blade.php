@@ -130,41 +130,7 @@
                                 @isset($category_id)
                                 <input type="hidden" name="category" value="{{Category::find($category_id)->slug }}">
                             @endisset
-                            <div class="text-left">
-                                <div class="">
-                                    <div class="form-group">
-                                        <label class="mb-0 opacity-50">{{ translate('Sort by')}}</label>
-                                        <select class="form-control form-control-sm aiz-selectpicker" name="sort_by" onchange="filter()">
-                                            <option value="1" @isset($sort_by) @if ($sort_by == '1') selected @endif @endisset>{{ translate('Newest')}}</option>
-                                            <option value="2" @isset($sort_by) @if ($sort_by == '2') selected @endif @endisset>{{ translate('Oldest')}}</option>
-                                            <option value="3" @isset($sort_by) @if ($sort_by == '3') selected @endif @endisset>{{ translate('Price low to high')}}</option>
-                                            <option value="4" @isset($sort_by) @if ($sort_by == '4') selected @endif @endisset>{{ translate('Price high to low')}}</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group ml-auto mr-0  d-none d-md-block">
-                                        <label class="mb-0 opacity-50">{{ translate('Condition')}}</label>
-                                        <select class="form-control form-control-sm aiz-selectpicker" name="condition" onchange="filter()">
-                                            <option value="">{{ translate('All Type')}}</option>
-                                            <option value="new" @isset($condition) @if ($condition == 'new') selected @endif @endisset>{{ translate('New')}}</option>
-                                            <option value="used" @isset($condition) @if ($condition == 'used') selected @endif @endisset>{{ translate('Used')}}</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group ml-2 mr-0 d-none d-md-block">
-                                        <label class="mb-0 opacity-50">{{ translate('Brands')}}</label>
-                                        <select class="form-control form-control-sm aiz-selectpicker" data-live-search="true" name="brand" onchange="filter()">
-                                            <option value="">{{ translate('All Brands')}}</option>
-                                            @foreach (Brand::all() as $brand)
-                                                <option value="{{ $brand->slug }}" @isset($brand_id) @if ($brand_id == $brand->id) selected @endif @endisset>{{ $brand->getTranslation('name') }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="d-xl-none ml-auto ml-md-3 mr-0 form-group align-self-end">
-                                        <button type="button" class="btn btn-icon p-0" data-toggle="class-toggle" data-target=".aiz-filter-sidebar">
-                                            <i class="la la-filter la-2x"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+
                             </div>
                         </div>
                     </div>
@@ -194,10 +160,9 @@
                                                                                     class="badge badge-inline badge-danger">{{ translate('Used') }}</span>
                                                                             @endif
                                                                         </div>
-                                                                       <a href="{{ route('customer.product', $product->slug) }}">
-                                                                        <img style="width: 150px"
-                                                                        src="{{ uploaded_asset($product->photos) }}"
-                                                                        class="mr-3 " alt="..."></a>
+                                                                        <a href="{{ route('customer.product', $classified_product->slug) }}"><img style="width: 150px; border-radius:7px;"
+                                                                            src="{{ uploaded_asset($classified_product->photos) }}"
+                                                                            class="mr-3 " alt=""></a>
                                                                         <div class="media-body py-2">
                                                                             <a
                                                                                 href="{{ route('customer.product', $product->slug) }}">

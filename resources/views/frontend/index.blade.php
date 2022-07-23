@@ -156,7 +156,7 @@
                                                             class="badge badge-inline badge-danger">{{ translate('Used') }}</span>
                                                     @endif
                                                 </div>
-                                                <a href="{{ route('customer.product', $classified_product->slug) }}"><img style="width: 150px"
+                                                <a href="{{ route('customer.product', $classified_product->slug) }}"><img style="width: 150px; border-radius:7px;"
                                                     src="{{ uploaded_asset($classified_product->photos) }}"
                                                     class="mr-3 " alt=""></a>
 
@@ -170,27 +170,21 @@
                                                         <span class="opacity-70">/{{ $classified_product->getTranslation('unit') }}</span>
                                                     @endif</p>
                                                     <strong class="text-muted">{{ $classified_product->location }}</strong>
-
                                                 </div>
                                                 <p class="post-time">{{ $classified_product->created_at->diffForHumans() }}</p>
                                             </div>
                                         </div>
                                     </div>
                                 @endforeach
-
                              <div class="paginate mt-3">
                                     {{$classified_products->links()  }}
                              </div>
-
-
-
                     </div>
                 </div>
             </div>
             @if (get_setting('home_banner2_images') != null)
                 <div class="col-lg-3 px-2 py-4 px-md-4 py-md-3 bg-white shadow-sm rounded">
                     {{-- Banner Section 2 --}}
-
                     <div class="mb-4">
                         <div class="container">
                             <div class="row gutters-10">

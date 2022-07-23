@@ -60,7 +60,7 @@
         <link rel="stylesheet" href="{{ static_asset('assets/css/bootstrap-rtl.min.css') }}">
     @endif
     <link rel="stylesheet" href="{{ static_asset('assets/css/aiz-core.css') }}">
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="{{ static_asset('assets/css/style.css') }}">
     <script>
         $(document).ready(function() {
@@ -299,7 +299,47 @@
     <script src="{{ static_asset('assets/js/script.js') }}"></script>
     <script src="{{ static_asset('assets/js/stickyMojo.js') }}"></script>
 
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
+    <script>
+        // $( function() {
+        //   var availableTags = [];
+        //    $.ajax({
+        //      method: "GET",
+        //      url: "{{ route('search.ads.ajax') }}",
+        //      success: function(response){
+        //         searchAutoComplete(response);
+        //      }
+        //    });
+
+        //    function searchAutoComplete(availableTags){
+        //     $( "#search" ).autocomplete({
+        //     source: availableTags
+        //   });
+        //    }
+
+        // } );
+
+        $("body").on("keyup", "#search", function(){
+            let searchData = $("#search").val();
+
+            if(searchData.length > 0){
+                 $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+              });
+             $.ajax({
+             method: "POST",
+             url: "{{ route('search.ads.ajax') }}",
+             data: {searchData:searchData},
+             success: function(response){
+
+             }
+           });
+            }
+        })
+        </script>
 
     @if (get_setting('facebook_chat') == 1)
         <script type="text/javascript">

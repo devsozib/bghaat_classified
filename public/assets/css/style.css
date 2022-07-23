@@ -17,7 +17,10 @@
     position: relative;
     cursor: pointer;
 }
-
+.bs-searchbox .form-control {
+  
+    height: 11px!important;
+}
 .menu .item a .dropdown{
  position: absolute;
  right: 0;

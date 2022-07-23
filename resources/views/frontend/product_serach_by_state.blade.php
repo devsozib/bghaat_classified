@@ -112,7 +112,7 @@
                                     </div>
                                     <div class="p-3">
                                         <ul>
-                                            <li><h5 class="text-bolder"><b>{{ $getStateName->name }}</b></h5></li>
+                                            <li><h5 style="cursor: pointer;" data-toggle="collapse" data-target="#city" class="text-bolder"><b>{{ $getStateName->name }}</b><i class="fas ml-5 fa-angle-down dropdown right "></i></h5></li>
 
                                             @if ($getCities)
 
@@ -120,7 +120,7 @@
                                             @php
                                             $cityProductCount =CustomerProduct::where('city_id',$city->id)->count();
                                           @endphp
-                                         <li class="mb-2">
+                                         <li class="mb-2" class="collapse" id="city">
                                               <a href="{{ route('customer_products.city', $city->id) }}" class="text-dark">{{ $city->name }}({{ $cityProductCount }})</a>
                                          </li>
                                             @endforeach
@@ -234,10 +234,9 @@
                                                                                 class="badge badge-inline badge-danger">{{ translate('Used') }}</span>
                                                                         @endif
                                                                     </div>
-                                                                    <a href="{{ route('customer.product', $product->slug) }}">
-                                                                        <img style="width: 150px"
-                                                                        src="{{ uploaded_asset($product->photos) }}"
-                                                                        class="mr-3 " alt="..."></a>
+                                                                    <a href="{{ route('customer.product', $classified_product->slug) }}"><img style="width: 150px; border-radius:7px;"
+                                                                        src="{{ uploaded_asset($classified_product->photos) }}"
+                                                                        class="mr-3 " alt=""></a>
                                                                     <div class="media-body py-2">
                                                                         <a
                                                                             href="{{ route('customer.product', $product->slug) }}">

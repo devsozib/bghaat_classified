@@ -114,26 +114,6 @@
                                         <ul>
                                             <li><h5 class="text-bolder"><b>{{ $getCityName->name }}</b></h5></li>
 
-                                            {{-- @if ($getCities)
-
-                                            @foreach ($getCities as $city)
-
-                                         <li class="mb-2">
-                                              <a href="{{ url('customer_products.city', $city->id) }}" class="text-dark">{{ $city->name }}</a>
-                                         </li>
-                                            @endforeach
-                                            @else
-                                            @if (!isset($category_id))
-                                            @foreach (State::orderBy('name','asc')->where('status', 1)->get() as $state)
-                                            @php
-                                            $stateProductCount =CustomerProduct::where('state_id',$state->id)->count();
-                                          @endphp
-                                         <li class="mb-2">
-                                              <a href="{{ route('customer_products.state', $state->id) }}" class="text-dark">{{$state->name}}({{ $stateProductCount }})</a>
-                                         </li>
-                                         @endforeach
-                                         @endif
-                                            @endif --}}
 
 
 
@@ -154,60 +134,7 @@
                     </div>
                     <div class="col-xl-9">
 
-                        {{-- <ul class="breadcrumb bg-transparent p-0">
-                            <li class="breadcrumb-item opacity-50">
-                                <a class="text-reset" href="{{ route('home') }}">{{ translate('Home')}}</a>
-                            </li>
-                            @if(!isset($category_id))
-                                <li class="breadcrumb-item fw-600  text-dark">
-                                    <a class="text-reset" href="{{ route('customer.products') }}">"{{ translate('All Categories')}}"</a>
-                                </li>
-                            @else
-                                <li class="breadcrumb-item opacity-50">
-                                    <a class="text-reset" href="{{ route('customer.products') }}">{{ translate('All Categories')}}</a>
-                                </li>
-                            @endif
-                            @if(isset($category_id))
-                                <li class="text-dark fw-600 breadcrumb-item">
-                                    <a class="text-reset" href="{{ route('customer_products.category', \App\Models\Category::find($category_id)->slug) }}">"{{ \App\Models\Category::find($category_id)->getTranslation('name') }}"</a>
-                                </li>
-                            @endif
-                        </ul> --}}
 
-                        {{-- <div class="row gutters-5 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-4 row-cols-md-3 row-cols-2">
-                            @foreach ($customer_products as $key => $product)
-                                <div class="col mb-2">
-                                    <div class="aiz-card-box border border-light rounded shadow-sm hov-shadow-md h-100 has-transition bg-white">
-                                        <div class="position-relative">
-                                            <a href="{{ route('customer.product', $product->slug) }}" class="d-block">
-                                                <img
-                                                    class="img-fit lazyload mx-auto h-140px h-md-210px"
-                                                    src="{{ static_asset('assets/img/placeholder.jpg') }}"
-                                                    data-src="{{ uploaded_asset($product->photos) }}"
-                                                    alt="{{  $product->getTranslation('name')  }}"
-                                                    onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';"
-                                                >
-                                            </a>
-                                            <div class="absolute-top-left pt-2 pl-2">
-                                                @if($product->conditon == 'new')
-                                                   <span class="badge badge-inline badge-success">{{translate('New')}}</span>
-                                               @elseif($product->conditon == 'used')
-                                                   <span class="badge badge-inline badge-danger">{{translate('Used')}}</span>
-                                               @endif
-                                            </div>
-                                        </div>
-                                        <div class="p-md-3 p-2 text-left">
-                                            <div class="fs-15">
-                                                <span class="fw-700 text-primary">{{ single_price($product->unit_price) }}</span>
-                                            </div>
-                                            <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0">
-                                                <a href="{{ route('customer.product', $product->slug) }}" class="d-block text-reset">{{  $product->getTranslation('name')  }}</a>
-                                            </h3>
-                                        </div>
-                                   </div>
-                                </div>
-                            @endforeach
-                        </div> --}}
                         <section class="mb-4">
 
                             <div class="row">
@@ -232,10 +159,9 @@
                                                                                 class="badge badge-inline badge-danger">{{ translate('Used') }}</span>
                                                                         @endif
                                                                     </div>
-                                                                    <a href="{{ route('customer.product', $product->slug) }}">
-                                                                        <img style="width: 150px"
-                                                                        src="{{ uploaded_asset($product->photos) }}"
-                                                                        class="mr-3 " alt="..."></a>
+                                                                    <a href="{{ route('customer.product', $classified_product->slug) }}"><img style="width: 150px; border-radius:7px;"
+                                                                        src="{{ uploaded_asset($classified_product->photos) }}"
+                                                                        class="mr-3 " alt=""></a>
                                                                     <div class="media-body py-2">
                                                                         <a
                                                                             href="{{ route('customer.product', $product->slug) }}">
