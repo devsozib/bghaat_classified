@@ -160,8 +160,8 @@
                                                                                     class="badge badge-inline badge-danger">{{ translate('Used') }}</span>
                                                                             @endif
                                                                         </div>
-                                                                        <a href="{{ route('customer.product', $classified_product->slug) }}"><img style="width: 150px; border-radius:7px;"
-                                                                            src="{{ uploaded_asset($classified_product->photos) }}"
+                                                                        <a href="{{ route('customer.product', $product->slug) }}"><img style="width: 150px; border-radius:7px;"
+                                                                            src="{{ uploaded_asset($product->photos) }}"
                                                                             class="mr-3 " alt=""></a>
                                                                         <div class="media-body py-2">
                                                                             <a

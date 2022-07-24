@@ -334,11 +334,25 @@
              url: "{{ route('search.ads.ajax') }}",
              data: {searchData:searchData},
              success: function(response){
-
+                $('#suggest-ads').html(response)
              }
+
+
            });
             }
+
+            if(searchData.length < 1)  $('#suggest-ads').html("")
         })
+
+        function showSearchResult(){
+
+            $('#suggest-ads').slideDown()
+        }
+
+        function hideSearchResult(){
+
+            $('#suggest-ads').slideUp()
+            }
         </script>
 
     @if (get_setting('facebook_chat') == 1)

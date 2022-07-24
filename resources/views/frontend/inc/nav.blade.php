@@ -6,6 +6,16 @@
     .input-group.serach-form.mt-2 {
     width: 400px;
 }
+#suggest-ads {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 76%;
+    background-color: #fff;
+    z-index: 99999;
+    border-radius: 4px;
+    margin-top: -4px;
+}
 </style>
 <!-- END Top Bar -->
 
@@ -152,7 +162,7 @@
                                 <button class="btn px-2" type="button"><i class="la la-2x la-long-arrow-left"></i></button>
                             </div>
                             <div class="input-group serach-form mt-2" >
-                                <input type="text" class=" form-control" id="search" name="query"  placeholder="{{translate('What are you looking for?')}}" value="{{ isset($old_query)? $old_query: "" }}">
+                                <input onfocus="showSearchResult()" onblur="hideSearchResult()" type="text" class=" form-control" id="search" name="query"  placeholder="{{translate('What are you looking for?')}}" value="{{ isset($old_query)? $old_query: "" }}">
                                 <div class=" ">
                                     <button class="btn" style="margin-left:-50px; margin-top:5px" type="submit">
                                         <i class="la la-search la-flip-horizontal fs-18"></i>

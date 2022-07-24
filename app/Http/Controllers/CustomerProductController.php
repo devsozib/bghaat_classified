@@ -468,7 +468,7 @@ class CustomerProductController extends Controller
       
       $adsList= CustomerProduct::where('name','like','%'.$request->searchData.'%')
                                  ->orWhere('description','like','%'.$request->searchData.'%')
-                                 ->take(5);
+                                 ->take(5)->get();
        
       
         return view('frontend.user.search-ads', compact('adsList'));
