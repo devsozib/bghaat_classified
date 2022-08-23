@@ -37,6 +37,8 @@
     @include('frontend.user.customer.individual_form.house_for_sale')
     @elseif ($subcategoryId == 42)
     @include('frontend.user.customer.individual_form.commercial_properties_for_sale')
+    @elseif ($subcategoryId == 46)
+    @include('frontend.user.customer.individual_form.food')
     @endif
 
 @endsection

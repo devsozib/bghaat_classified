@@ -163,5 +163,13 @@ class CustomerController extends Controller
         return back();
     }
 
+    public function changeAuthorizationStatus(Request $request){
+            
+           $customer= User::where('user_type', 'customer')->where('id' , $request->id)->first();
+           $customer->authorization_status = $request->data;
+           $customer->update();
+           session()->flash('success', 'Success');
+    }
+
    
 }

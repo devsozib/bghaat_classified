@@ -15,7 +15,7 @@
             <div class="col">
                 <h5 class="mb-0 h6">{{translate('Customers')}}</h5>
             </div>
-            
+
             <div class="dropdown mb-2 mb-md-0">
                 <button class="btn border dropdown-toggle" type="button" data-toggle="dropdown">
                     {{translate('Bulk Action')}}
@@ -24,14 +24,14 @@
                     <a class="dropdown-item" href="#" onclick="bulk_delete()">{{translate('Delete selection')}}</a>
                 </div>
             </div>
-            
+
             <div class="col-md-3">
                 <div class="form-group mb-0">
                     <input type="text" class="form-control" id="search" name="search"@isset($sort_search) value="{{ $sort_search }}" @endisset placeholder="{{ translate('Type email or name & Enter') }}">
                 </div>
             </div>
         </div>
-    
+
         <div class="card-body">
             <table class="table aiz-table mb-0">
                 <thead>
@@ -49,8 +49,9 @@
                         </th>
                         <th>{{translate('Name')}}</th>
                         <th data-breakpoints="lg">{{translate('Email Address')}}</th>
+                        <th data-breakpoints="lg">{{translate('Authorization Status')}}</th>
                         <th data-breakpoints="lg">{{translate('Phone')}}</th>
-                     
+
                         <th data-breakpoints="lg">{{translate('Wallet Balance')}}</th>
                         <th>{{translate('Options')}}</th>
                     </tr>
@@ -72,8 +73,18 @@
                                 </td>
                                 <td>@if($user->banned == 1) <i class="fa fa-ban text-danger" aria-hidden="true"></i> @endif {{$user->name}}</td>
                                 <td>{{$user->email}}</td>
+                                <td>
+                                    <select id="change_status{{ $loop->index+1 }}"
+                                     onChange="authorization_status_change({{ $user->id }}, 'change_status{{ $loop->index+1 }}')" class="form-select" aria-label="Default select example">
+
+                                        <option value="1" {{ $user->authorization_status ==1?"selected":"" }}>Authorized</option>
+                                        <option value="0" {{ $user->authorization_status ==0?"selected":"" }}>Unauthorized</option>
+
+
+                                      </select>
+                                </td>
                                 <td>{{$user->phone}}</td>
-                             
+
                                 <td>{{single_price($user->balance)}}</td>
                                 <td class="text-right">
                                     <a href="{{route('customers.login', encrypt($user->id))}}" class="btn btn-soft-primary btn-icon btn-circle btn-sm" title="{{ translate('Log in as this Customer') }}">
@@ -148,21 +159,21 @@
 
 @section('script')
     <script type="text/javascript">
-        
+
         $(document).on("change", ".check-all", function() {
             if(this.checked) {
                 // Iterate each checkbox
                 $('.check-one:checkbox').each(function() {
-                    this.checked = true;                        
+                    this.checked = true;
                 });
             } else {
                 $('.check-one:checkbox').each(function() {
-                    this.checked = false;                       
+                    this.checked = false;
                 });
             }
-          
+
         });
-        
+
         function sort_customers(el){
             $('#sort_customers').submit();
         }
@@ -177,7 +188,7 @@
             $('#confirm-unban').modal('show', {backdrop: 'static'});
             document.getElementById('confirmationunban').setAttribute('href' , url);
         }
-        
+
         function bulk_delete() {
             var data = new FormData($('#sort_customers')[0]);
             $.ajax({
@@ -196,6 +207,22 @@
                     }
                 }
             });
+        }
+    </script>
+  <!--Sweet Alert -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function authorization_status_change(id, item_id){
+
+            var data = document.getElementById(item_id).value;
+            var url= "{{ url()->current()}}"
+
+            $.get('{{ route('authorization_status_change') }}', {data:data, id:id}, function(data){
+
+                $('body').load(url);
+
+            });
+
         }
     </script>
 @endsection

@@ -35,6 +35,8 @@
 }
 
 body, html {
+  overflow-x: hidden !important;
+  width: 100vw !important;
 	height: 100%;
 	font-family: Raleway-Regular, sans-serif;
 }

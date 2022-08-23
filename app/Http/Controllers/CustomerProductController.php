@@ -146,6 +146,7 @@ class CustomerProductController extends Controller
         $customer_product->description          = $request->description;
         $customer_product->unit_price           = $request->unit_price;
         $customer_product->unit                 = $request->unit;
+        $customer_product->weight               = $request->weight;
         $customer_product->slug                 = strtolower(preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->name)).'-'.Str::random(5));
         if($customer_product->save()){
             $user = Auth::user();
@@ -277,6 +278,7 @@ class CustomerProductController extends Controller
         $customer_product->model                = $request->model;
         $customer_product->unit_price           = $request->unit_price;
         $customer_product->unit                 = $request->unit;
+        $customer_product->weight               = $request->weight;
         $customer_product->phone                =$request->phone;
         $customer_product->slug                 = strtolower(preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->name)).'-'.Str::random(5));
         if($customer_product->save()){

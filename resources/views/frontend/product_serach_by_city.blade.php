@@ -219,7 +219,38 @@
 
                             </div>
 
+                  <section class="mb-4" >
+                        <div class="container ml-auto">
+                           <div class="bg-white shadow-sm rounded">
+                                <div class="d-flex mb-3 align-items-baseline border-bottom px-3 py-2">
+                                    <h3 class="fs-16 fw-600 mb-0">
+                                        {{ translate('Other Ads of') }} {{$product->category->getTranslation('name') }}
+                                    </h3>
+                                    <a href="{{ route('customer_products.category', $product->category->slug) }}" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">{{ translate('Related Ads') }}</a>
+                                </div>
+                                <div class="p-3">
 
+                                        @php
+                                            $products = \App\Models\CustomerProduct::where('category_id', $product->category_id)->where('id', '!=', $product->id)->where('status', '1')->where('published', '1')->limit(10)->get();
+                                        @endphp
+                                        <div class="owl-carousel owl-theme">
+                                        @foreach ($products as $key => $product)
+
+                                                <div class="item text-center">
+                                                    <a href="{{ route('customer.product', $product->slug) }}"><img style="width: 150px; border-radius:7px;"
+                                                        src="{{ uploaded_asset($product->photos) }}"
+                                                        class="mr-3 " alt=""></a>
+                                                    <p>{{ $product->name }}</p>
+                                                </div>
+
+
+                                        @endforeach
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                     </section>
                         <div class="aiz-pagination aiz-pagination-center mt-4">
                             {{ $customer_products->links() }}

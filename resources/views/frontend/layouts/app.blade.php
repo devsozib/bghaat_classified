@@ -61,6 +61,7 @@
     @endif
     <link rel="stylesheet" href="{{ static_asset('assets/css/aiz-core.css') }}">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{{ static_asset('assets/owlcarousel/owl-carousel.css') }}">
     <link rel="stylesheet" href="{{ static_asset('assets/css/style.css') }}">
     <script>
         $(document).ready(function() {
@@ -297,10 +298,44 @@
     <script src="{{ static_asset('assets/js/aiz-core.js') }}"></script>
     <script src="{{ static_asset('assets/js/jquery.floatit.js') }}"></script>
     <script src="{{ static_asset('assets/js/script.js') }}"></script>
+    <script src="{{ static_asset('assets/owlcarousel/owl-carousel.js') }}"></script>
     <script src="{{ static_asset('assets/js/stickyMojo.js') }}"></script>
 
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+        var owl = $('.owl-carousel');
+owl.owlCarousel({
 
+    loop:true,
+    margin:10,
+    autoplay:true,
+    autoplayTimeout:1000,
+    autoplayHoverPause:true,
+    dots:true,
+    responsiveClass:true,
+    responsive:{
+        0:{
+            items:2,
+            nav:true
+        },
+        600:{
+            items:4,
+            nav:false
+        },
+        1000:{
+            items:5,
+            nav:true,
+            loop:true
+        }
+    }
+});
+$('.play').on('click',function(){
+    owl.trigger('play.owl.autoplay',[300])
+})
+$('.stop').on('click',function(){
+    owl.trigger('stop.owl.autoplay')
+})
+    </script>
     <script>
         // $( function() {
         //   var availableTags = [];

@@ -5941,7 +5941,7 @@ div.footable-loader > span.fooicon:after {
     -ms-flex-align: center;
     align-items: center;
     height: 18px;
-    width: 18px;
+   
     font-size: 0.65rem;
     font-weight: 500;
     line-height: unset;
@@ -6651,7 +6651,7 @@ ul.social.colored [class*="linkedin"] {
 
 @media (max-width: 1199px) {
     .aiz-user-sidenav-wrap {
-        display: none;
+        display: block;
         height: 100vh;
     }
     .aiz-user-panel {

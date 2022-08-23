@@ -103,7 +103,7 @@ ul li {
                                     <strong class="h5 fw-600 text-primary">
                                         Price:
                                         {{ single_price($customer_product->unit_price) }}
-                                    </strong>
+                                    </strong> <span><a href="tel:{{ $customer_product->phone }}">Call for bulk quantity</a></span>
                                     @if($customer_product->unit != null || $customer_product->unit != '')
                                         <span class="opacity-70">/{{ $customer_product->getTranslation('unit') }}</span>
                                     @endif
@@ -264,7 +264,7 @@ ul li {
 
 
                           <div class="posted-by">
-                              <h6 class="text-secondary">Posted By</h6>
+                              <h6 class="text-secondary text-center">Posted By</h6>
                           </div>
 
                             <ul class="list-group rounded mt-5">
@@ -280,9 +280,14 @@ ul li {
 
 
                                     </span>
-                                     <div class="text-center fs-17 fw-600">
-                                            {{ $customer_product->user->name }}
-                                        </div>
+
+                                            <p class="text-center">{{ $customer_product->user->name }}
+                                              @if ($customer_product->user->authorization_status == 1)
+                                              <a href="#" class="badge badge-success">Verified✔</a>
+                                              @endif
+                                            </p>
+
+
                                 <div class="contact-info" style="border-radius:10px;">
 
 
@@ -317,7 +322,7 @@ ul li {
 
                                     </div>
                                 </li>
-                                <li class="list-group-item">
+                                {{-- <li class="list-group-item">
                                     <div class="d-flex">
                                         <span class="d-flex align-items-center justify-content-center rounded-circle size-30px bg-primary text-white mr-2">
                                             <i class="las la-comment-alt"></i>
@@ -327,7 +332,7 @@ ul li {
                                              Chat
                                         </div>
                                     </div>
-                                </li>
+                                </li> --}}
 
                                                      </div>
                             </ul>
@@ -342,36 +347,13 @@ ul li {
                             </div>
                         </div>
 
-                            @if (get_setting('home_banner2_images') != null)
-
-                    {{-- Banner Section 2 --}}
-
-                    <div class="mb-4">
-
-
-                                @php $banner_2_imags = json_decode(get_setting('home_banner2_images')); @endphp
-                                @foreach ($banner_2_imags as $key => $value)
-                                    <div class="col-xl-12 col-md-6">
-                                        <div class="mb-3 mb-lg-0 py-4">
-                                            <a href="{{ json_decode(get_setting('home_banner2_links'), true)[$key] }}"
-                                                class="d-block text-reset">
-                                                <img src="{{ static_asset('assets/img/placeholder-rect.jpg') }}"
-                                                    data-src="{{ uploaded_asset($banner_2_imags[$key]) }}"
-                                                    alt="{{ env('APP_NAME') }} promo"
-                                                    class="img-fluid lazyload w-100">
-                                            </a>
-                                        </div>
-                                    </div>
-                                @endforeach
-
-
+                    </div>
 
 
                 </div>
-            @endif
-                    </div>
-
-                    <section class="mb-4" >
+            </div>
+        </div>
+            <section class="mb-4" >
                         <div class="container ml-auto">
                            <div class="bg-white shadow-sm rounded">
                                 <div class="d-flex mb-3 align-items-baseline border-bottom px-3 py-2">
@@ -381,50 +363,29 @@ ul li {
                                     <a href="{{ route('customer_products.category', $customer_product->category->slug) }}" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">{{ translate('Related Ads') }}</a>
                                 </div>
                                 <div class="p-3">
-                                    <div class="aiz-carousel gutters-2 half-outside-arrow" data-items="4" data-xl-items="4" data-lg-items="4"  data-md-items="2" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='false'>
+
                                         @php
                                             $products = \App\Models\CustomerProduct::where('category_id', $customer_product->category_id)->where('id', '!=', $customer_product->id)->where('status', '1')->where('published', '1')->limit(10)->get();
                                         @endphp
+                                        <div class="owl-carousel owl-theme">
                                         @foreach ($products as $key => $product)
-                                        <div class="carousel-box">
-                                            <div class="aiz-card-box border border-light rounded hov-shadow-md my-2 has-transition">
-                                                <div class="position-relative">
-                                                    <a href="{{ route('customer.product', $product->slug) }}" class="d-block">
-                                                        <img
-                                                            class="img-fit lazyload mx-auto h-140px h-md-210px"
-                                                            src="{{ static_asset('assets/img/placeholder.jpg') }}"
-                                                            data-src="{{ uploaded_asset($product->photos) }}"
-                                                            alt="{{  $product->getTranslation('name')  }}"
-                                                            onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';"
-                                                        >
-                                                    </a>
-                                                    <div class="absolute-top-left pt-2 pl-2">
-                                                        @if($product->conditon == 'new')
-                                                           <span class="badge badge-inline badge-success">{{translate('new')}}</span>
-                                                       @elseif($product->conditon == 'used')
-                                                           <span class="badge badge-inline badge-danger">{{translate('Used')}}</span>
-                                                       @endif
-                                                    </div>
+
+                                                <div class="item ">
+                                                    <a href="{{ route('customer.product', $product->slug) }}"><img style="width: 100px;
+                                                    width:100px; border-radius:7px;"
+                                                        src="{{ uploaded_asset($product->photos) }}"
+                                                        class="mr-3 " alt=""></a>
+                                                    <p class="text-left">{{ $product->name }}</p>
                                                 </div>
-                                                <div class="p-md-3 p-2 text-left">
-                                                    <div class="fs-15 mb-1">
-                                                        <span class="fw-700 text-secondary">{{ single_price($product->unit_price) }}</span>
-                                                    </div>
-                                                    <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
-                                                        <a href="{{ route('customer.product', $product->slug) }}" class="d-block text-reset">{{  $product->getTranslation('name')  }}</a>
-                                                    </h3>
-                                                </div>
-                                           </div>
-                                        </div>
+
+
                                         @endforeach
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                     </section>
-                </div>
-            </div>
-        </div>
     </section>
 
 <script type="text/javascript">
@@ -432,6 +393,8 @@ ul li {
             $(el).find('.dummy').addClass('d-none');
             $(el).find('.real').removeClass('d-none').addClass('d-block');
         }
+
+
 </script>
 
 

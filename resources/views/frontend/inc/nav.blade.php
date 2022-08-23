@@ -3,23 +3,38 @@
 
 <link rel='stylesheet' id='theme-options-css'  href='{{ static_asset('assets/css/classiadspro-dynamic.css') }}' type='text/css' media='all' />
 <style>
-    .input-group.serach-form.mt-2 {
-    width: 400px;
-}
 #suggest-ads {
     position: absolute;
-    top: 100%;
+    top: 112%;
     left: 0;
-    width: 76%;
+    width: 100%;
     background-color: #fff;
     z-index: 99999;
     border-radius: 4px;
     margin-top: -4px;
 }
-</style>
-<!-- END Top Bar -->
+.d-flex.position-relative.align-items-center {
 
-{{-- <header class="@if(get_setting('header_stikcy') == 'on') sticky-top @endif z-1020 border-bottom shadow-sm" style="background-color:#272727!important">
+    width: 341px;
+}
+input#search {
+    margin-top: 25px;
+}
+.list-inline-item:not(:last-child) {
+    margin-top: -20px;
+    margin-right: 0.5rem;
+}
+
+.serach-form > input{
+    border: none;
+
+
+}
+</style>
+
+<!-- END Top Bar -->
+{{--
+<header class="@if(get_setting('header_stikcy') == 'on') sticky-top @endif z-1020 border-bottom shadow-sm" style="background-color:#272727!important">
     <div class="position-relative logo-bar-area z-1">
         <div class="container">
             <div class="d-flex align-items-center">
@@ -144,10 +159,42 @@
         </div>
     @endif
 </header> --}}
-	<header id="pacz-header" class="block-header boxed-header header-style-v11 header-align-left header-structure-standard header-hover-style- put-header-top 0 header_grid_margin  theme-main-header pacz-header-module" data-header-style="block" data-header-structure="standard" data-transparent-skin="dark" data-height="103" data-sticky-height="103"><div class="pacz-header-mainnavbar"><div class="pacz-grid clearfix"><nav id="pacz-main-navigation" class="clearfix">
+ <header id="pacz-header" class="block-header boxed-header header-style-v11 header-align-left header-structure-standard header-hover-style- put-header-top 0 header_grid_margin  theme-main-header pacz-header-module" data-header-style="block" data-header-structure="standard" data-transparent-skin="dark" data-height="103" data-sticky-height="103"><div class="pacz-header-mainnavbar"><div class="pacz-grid clearfix"><nav id="pacz-main-navigation" class="clearfix">
         <ul id="menu-main" class="main-navigation-ul clearfix">
-        <li class="list-inline-item mt-2">
-            <div class="d-lg-none mr-0" style="margin-top: 45px;">
+            <li class="list-inline-item right ">
+
+
+                <div class=" front-header-search d-flex align-items-center">
+                    <div class="position-relative  ">
+                        <form action="{{ route('search') }}" method="GET" class="stop-propagation mt-3">
+
+                            <div class="d-flex position-relative align-items-center">
+                                <div class="d-lg-none" data-toggle="class-toggle" data-target=".front-header-search">
+                                    <button class="btn px-2" type="button"><i class="la la-2x la-long-arrow-left"></i></button>
+                                </div>
+                                <div class="input-group serach-form mt-2" >
+                                    <input onfocus="showSearchResult()" onblur="hideSearchResult()" type="text" class="form-control"  id="search" name="query"  placeholder="{{translate('What are you looking for?')}}" value="{{ isset($old_query)? $old_query: "" }}">
+                                    <div class=" ">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div id="suggest-ads">
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+            </li>
+        <li class="responsive-nav-link d-none d-xsm-block">
+
+            <div class="d-lg-none mr-0">
                 <a class="p-2 d-block text-reset " style="margin-top:-10px;" href="javascript:void(0);" data-toggle="class-toggle" data-target=".front-header-search">
                     <i class="las la-search la-flip-horizontal "></i>
                 </a>
@@ -217,6 +264,8 @@
 </div>
 </div>
 </header>
+
+
 <style>
     .mobile-hor-swipe{
         display: none;

@@ -19,12 +19,12 @@
         <strong class="ml-3">Select a subcategory</strong>
         @forelse ($subcategory as $items)
         <a href="{{ route('customer.products.upload.form',encrypt($items->id)) }}">
-        <div class="media">
-            <div class="media-body">
-              <p class="mt-0 mb-1">{{ $items->name }}</p>
-            </div>
-            <i class='fas fa-arrow-right'></i>
-          </div>
+            <ul class="list-group">
+                <li class="list-group-item">{{ $items->name }}
+                    <i class='fas fa-arrow-right float-right'></i>
+                </li>
+
+              </ul>
         </a>
           @empty
           <br/>

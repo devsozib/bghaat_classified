@@ -76,7 +76,7 @@
                             </div>
                           </div>
                           <div class="row  gutters-10">
-                            @foreach (Category::where('level', 0)->where('featured',1)->limit(8)->get() as $category)
+                            @foreach (Category::where('level', 0)->where('featured',1)->orderBy('name','asc')->limit(8)->get() as $category)
                             @php
                              $productCount =CustomerProduct::where('category_id',$category->id)->count();
                            @endphp
@@ -84,17 +84,18 @@
                                 .cat_items:hover{
                                     transform: translateY(-7px);
                                     transition: all 1s ease;
+                                    padding-top: 5px;
                                     box-shadow: 0 0 30px rgb(0 0 0 / 25%);
 }
 
                            </style>
-                            <div class="col-md-3 col-6 ">
-                              <div class="card rounded cat_items"  style="height:120px;">
-                                <div class="card-body">
-                                  <div class=" justify-content-between px-md-1">
+                            <div class="col-md-3 col-6">
+                              <div class="rounded cat_items">
+                                <div class="">
+                                  <div class=" justify-content-between">
                                     <div class="align-self-center text-center">
                                         <a href="{{ route('customer_products.category', $category->slug) }}">
-                                        <img style="width:70px;height:70px;" src="{{ uploaded_asset($category->banner) }}" alt="">
+                                        <img style="width:40px;height:40px;" src="{{ uploaded_asset($category->banner) }}" alt="">
 
                                         </a>
                                     </div>
@@ -136,9 +137,9 @@
             <div class="col-lg-2 px-2  px-md-4 py-md-3  shadow-sm rounded">
 
             </div>
-            <div class="col-lg-7">
-                <div class="px-2  px-md-4 py-md-3  shadow-sm rounded ">
-                    <div class="d-flex mb-3 align-items-baseline border-bottom">
+            <div class="col-lg-7" >
+                <div class="px-2  px-md-4 py-md-3  shadow-sm rounded " style="margin-top:-30px">
+                    <div class="d-flex  align-items-baseline">
 
                     </div>
 
@@ -158,7 +159,7 @@
                                                 </div>
                                                 <a href="{{ route('customer.product', $classified_product->slug) }}"><img style="width: 150px; border-radius:7px;"
                                                     src="{{ uploaded_asset($classified_product->photos) }}"
-                                                    class="mr-3 " alt=""></a>
+                                                    class="mr-3 align-self-center " alt=""></a>
 
                                                 <div class="media-body py-2">
                                                     <a
@@ -169,6 +170,8 @@
                                                     <p>{{ single_price($classified_product->unit_price) }}@if($classified_product->unit != null || $classified_product->unit != '')
                                                         <span class="opacity-70">/{{ $classified_product->getTranslation('unit') }}</span>
                                                     @endif</p>
+                                                    <p>{{ Str::words($classified_product->meta_description,7,'...') }} &nbsp;<a
+                                                        style="color:rgb(67, 82, 129); font-size:12px" href="{{route('customer.product', $classified_product->slug) }}">Read More</a></p>
                                                     <strong class="text-muted">{{ $classified_product->location }}</strong>
                                                 </div>
                                                 <p class="post-time">{{ $classified_product->created_at->diffForHumans() }}</p>

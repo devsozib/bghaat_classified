@@ -286,4 +286,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
     Route::get('/all-notification', 'NotificationController@index')->name('admin.all-notification');
 
     Route::get('/cache-cache', 'AdminController@clearCache')->name('cache.clear');
+
+    Route::get('authorization-status-change', 'CustomerController@changeAuthorizationStatus')->name('authorization_status_change');
 });
